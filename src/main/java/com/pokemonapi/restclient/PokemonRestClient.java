@@ -10,19 +10,17 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.server.ResponseStatusException;
 
 @Component
 public class PokemonRestClient {
     Logger log = LoggerFactory.getLogger(PokemonRestClient.class);
 
-    RestTemplate restTemplate = new RestTemplate();
-    String pokemonBaseUrl = "https://pokeapi.co/api/v2/pokemon";
+    private RestTemplate restTemplate = new RestTemplate();
+    private static String POKEMON_BASE_URL = "https://pokeapi.co/api/v2/pokemon";
 
     public PokemonResponse getPokemonByName(String pokemonName) {
-        String url = pokemonBaseUrl + "/" + pokemonName;
+        String url = POKEMON_BASE_URL + "/" + pokemonName;
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("user-agent", "header-info");
@@ -33,7 +31,7 @@ public class PokemonRestClient {
 
         try {
             resp = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
-            log.info("Response for {} is {}. HTTPstatus:{}", pokemonName, resp.getBody(), resp.getStatusCode());
+            //log.info("Response for {} is {}. HTTPstatus:{}", pokemonName, resp.getBody(), resp.getStatusCode());
         } catch (HttpClientErrorException e) {
             HttpStatus status = e.getStatusCode();
             if (status == HttpStatus.NOT_FOUND) {

@@ -12,13 +12,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/pokemon")
+@RequestMapping("/pokemons")
 public class PokemonController {
 
     private static Logger log = LoggerFactory.getLogger(App.class);
 
     @Autowired
     private PokemonService pokemonService;
+
 
     @RequestMapping(value = "/{name}",method = RequestMethod.GET)
     public Pokemon getPokemonByName(@PathVariable("name") String name){

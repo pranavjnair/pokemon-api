@@ -2,7 +2,7 @@ package com.pokemonapi.service;
 
 import com.pokemonapi.dto.*;
 import com.pokemonapi.model.Pokemon;
-import com.pokemonapi.model.PokemonStats;
+import com.pokemonapi.model.PokemonBaseStats;
 import com.pokemonapi.restclient.PokemonRestClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,13 +42,14 @@ public class PokemonServiceImpl implements PokemonService{
         log.info("pokemon:{} types:{}",pokemonName, types);
 
         List<StatInfo> statInfos = pokemonResponse.getStats();
-        PokemonStats pokemonStats = new PokemonStats();
+        PokemonBaseStats pokemonBaseStats = new PokemonBaseStats();
         for (StatInfo info : statInfos){
-            pokemonStats.setStat(info);
+            pokemonBaseStats.setStat(info);
         }
 
-        log.info("pokemon:{} pokemonStats:{}",pokemonName, pokemonStats);
+        log.info("pokemon:{} pokemonStats:{}",pokemonName, pokemonBaseStats);
 
-        return new Pokemon(pokemonName, abilities,types,pokemonStats);
+
+        return new Pokemon(pokemonName, abilities,types, pokemonBaseStats);
     }
 }

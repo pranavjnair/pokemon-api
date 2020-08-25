@@ -10,17 +10,17 @@ import java.util.List;
 import java.util.Map;
 
 @Data
-public class PokemonMatchups {
+public class PokemonMatchup {
 
-    private static Logger log = LoggerFactory.getLogger(PokemonMatchups.class);
+    private static Logger log = LoggerFactory.getLogger(PokemonMatchup.class);
 
-    private Map<String,Double> defensiveMatchups = new HashMap<>();
+    private Map<String,Double> defensiveMatchup = new HashMap<>();
 
-    public PokemonMatchups(List<Type> types){
-        this.setDefensiveMatchups(types);
+    public PokemonMatchup(List<Type> types){
+        this.setDefensiveMatchup(types);
     }
 
-    private void setDefensiveMatchups(List<Type> types){
+    private void setDefensiveMatchup(List<Type> types){
         for (Type type : types){
             switch (type.getName()){
                 case "normal":
@@ -30,7 +30,6 @@ public class PokemonMatchups {
                     break;
 
                 case "fire":
-                    this.setNEDefensiveMatchup("fire");
                     this.setNEDefensiveMatchup("grass");
                     this.setNEDefensiveMatchup("ice");
                     this.setNEDefensiveMatchup("bug");
@@ -229,26 +228,26 @@ public class PokemonMatchups {
     }
 
     private void setSEDefensiveMatchup(String type){
-        if(defensiveMatchups.containsKey(type)){
-            defensiveMatchups.put(type, defensiveMatchups.get(type)*2);
+        if(defensiveMatchup.containsKey(type)){
+            defensiveMatchup.put(type, defensiveMatchup.get(type)*2);
         } else {
-            defensiveMatchups.put(type,2.0);
+            defensiveMatchup.put(type,2.0);
         }
     }
 
     private void setNEDefensiveMatchup(String type){
-        if(defensiveMatchups.containsKey(type)){
-            defensiveMatchups.put(type, defensiveMatchups.get(type)*0.5);
+        if(defensiveMatchup.containsKey(type)){
+            defensiveMatchup.put(type, defensiveMatchup.get(type)*0.5);
         } else {
-            defensiveMatchups.put(type,0.5);
+            defensiveMatchup.put(type,0.5);
         }
     }
 
     private void setImmunityDefensiveMatchup(String type){
-        if(defensiveMatchups.containsKey(type)){
-            defensiveMatchups.put(type, defensiveMatchups.get(type)*0);
+        if(defensiveMatchup.containsKey(type)){
+            defensiveMatchup.put(type, defensiveMatchup.get(type)*0);
         } else {
-            defensiveMatchups.put(type,0.0);
+            defensiveMatchup.put(type,0.0);
         }
     }
 

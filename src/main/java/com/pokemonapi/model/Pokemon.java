@@ -1,6 +1,5 @@
 package com.pokemonapi.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pokemonapi.dto.Ability;
 import com.pokemonapi.dto.Type;
 import lombok.AllArgsConstructor;
@@ -18,16 +17,16 @@ public class Pokemon {
     private String name;
     private List<Ability> abilities;
     private List<Type> types;
-    private PokemonTrainedStats pokemonTrainedStats;
-    private PokemonMatchups pokemonMatchups;
     private String nature = DEFAULT_NATURE;
+    private PokemonTrainedStats pokemonTrainedStats;
+    private PokemonMatchup pokemonMatchup;
 
 
     public Pokemon (String name, List<Ability> abilities, List<Type> types, PokemonBaseStats pokemonBaseStats){
         this.name = name;
         this.abilities = abilities;
         this.types = types;
-        this.pokemonMatchups = new PokemonMatchups(this.types);
+        this.pokemonMatchup = new PokemonMatchup(this.types);
         this.pokemonTrainedStats = new PokemonTrainedStats(DEFAULT_LEVEL,this.nature,pokemonBaseStats.getBaseStats());
     }
 

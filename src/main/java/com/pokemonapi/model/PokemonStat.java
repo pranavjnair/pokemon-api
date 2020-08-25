@@ -1,13 +1,8 @@
 package com.pokemonapi.model;
 
-import com.pokemonapi.App;
 import lombok.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 
 
 @Data

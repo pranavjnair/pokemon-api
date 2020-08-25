@@ -1,5 +1,6 @@
 package com.pokemonapi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import java.util.*;
@@ -19,6 +20,7 @@ public class PokemonTrainedStats {
     private PokemonStat ivs = new PokemonStat();
     private PokemonStat baseStats = new PokemonStat();
 
+    @JsonIgnore
     private List<String> statNames = new ArrayList<>(Arrays.asList("hp", "attack", "defense", "specialAttack",
             "specialDefense", "speed"));
 
